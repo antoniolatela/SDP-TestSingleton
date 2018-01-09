@@ -3,6 +3,7 @@ package reflection;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.Scanner;
 
 /**
  * Created by alatel01 on 09/01/2018.
@@ -39,7 +40,10 @@ public class MyClass {
     public static void main(String[] args) {
         MyClass myClass = new MyClass();
         try {
-            Class c  = Class.forName("reflection.MyClass");
+            Scanner sc = new Scanner (System.in);
+            System.out.println("full class name");
+            String s = sc.nextLine();
+            Class c  = Class.forName(s);
             System.out.println(myClass.getClass());
             System.out.println(c.getPackage());
             Method[]  methods = c.getMethods();
@@ -54,8 +58,8 @@ public class MyClass {
 
 
                 try {
-                    MyClass myClass1 = (MyClass) c.newInstance();
-                    System.out.println(myClass1.getString());
+                    Object myClass1 = c.newInstance();
+                    System.out.println(myClass1.toString());
                 } catch (InstantiationException e) {
                     e.printStackTrace();
                 } catch (IllegalAccessException e) {
